@@ -107,20 +107,8 @@
 
         src = coreboot-src;
 
-        #buildPhase = 
-        #  let buildScript = writeText "" ''
-        #    export PATH=/bin:/sbin:/usr/bin:/usr/sbin
-
-        #    export -p $out
-        #    make crossgcc-i386 CPUS=$(nproc) DEST=$out
-        #  ''; in
-        #  ''
-        #    coreboot-env ${buildScript}
-        #  '';
-
         postUnpack = ''
           cd source
-	  cp -r ${mrc-bin}/mrc.bin .
           mkdir -p util/crossgcc/tarballs
           ln -s ${gmpTar} util/crossgcc/tarballs/${gmpTarName}
           ln -s ${mpfrTar} util/crossgcc/tarballs/${mpfrTarName}
@@ -212,7 +200,7 @@
         src = coreboot-src;
 
         unpackPhase = ''
-          #ls -la ${seabios-src}
+	  cp -r ${mrc-bin}/mrc.bin .
           cp -r ${coreboot-src}/. .
           chmod u+w -R .
           cp -r ${seabios-src} payloads/external/SeaBIOS/seabios
@@ -224,7 +212,6 @@
           cp ${self}/X10-SLM-F.config .config
           chmod u+w .config
           
-	  ls -la .
           make -j $(nproc) CPUS=$(nproc)
         '';
 
