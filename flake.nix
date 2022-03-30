@@ -19,10 +19,21 @@
       flake = false;
       type = "git";
     };
+
+    # needs to be fetched from googles server [still no free impl]
+    # the ./crossfirmware.sh script usually handles fetching teh llatest recovery
+    # though I don't want to bother with this rn so I will just provide a static
+    # link for now (and hopefully we can build theis ourselves later regarless)
+    # so i guess TODO: build from a drv
+    mrc-bin = {
+      url = "https://github.com/INTERUPT13/mrc-bin-mirror.git";
+      type = "git";
+      flake = false;
+    };
   };
 
 
-  outputs = {self, nixpkgs, coreboot-src, seabios-src }: 
+  outputs = {self, nixpkgs, coreboot-src, mrc-bin, seabios-src }: 
       with import nixpkgs { system = "x86_64-linux"; };
   let
 
@@ -108,8 +119,8 @@
         #  '';
 
         postUnpack = ''
-          tar --version
           cd source
+	  cp -r ${mrc-bin}/mrc.bin .
           mkdir -p util/crossgcc/tarballs
           ln -s ${gmpTar} util/crossgcc/tarballs/${gmpTarName}
           ln -s ${mpfrTar} util/crossgcc/tarballs/${mpfrTarName}
@@ -191,7 +202,7 @@
     defaultPackage.x86_64-linux  =
       with import nixpkgs { system = "x86_64-linux"; };
       stdenv.mkDerivation {
-        name = "coreboot-X10-SLM+F";
+        name = "coreboot-X10-SLM-F";
 
         nativeBuildInputs = [
           self.packages.x86_64-linux.coreboot-toolchain-x86
@@ -210,10 +221,10 @@
         '';
 
         buildPhase = ''
-          cp ${self}/X10-SLM+F.config .config
+          cp ${self}/X10-SLM-F.config .config
           chmod u+w .config
           
-          touch mrc.bin
+	  ls -la .
           make -j $(nproc) CPUS=$(nproc)
         '';
 
