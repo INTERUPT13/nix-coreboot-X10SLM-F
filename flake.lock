@@ -1,0 +1,79 @@
+{
+  "nodes": {
+    "coreboot-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1657728662,
+        "narHash": "sha256-0MMQC1NaN4ra1o6GlGrxHU175f38Bp2Dpb1pe3EN6kU=",
+        "ref": "refs/heads/master",
+        "rev": "bebdd4fb8a574c6fccbcf3e68ee8eff9ae0274b1",
+        "revCount": 48304,
+        "submodules": true,
+        "type": "git",
+        "url": "https://review.coreboot.org/coreboot.git"
+      },
+      "original": {
+        "submodules": true,
+        "type": "git",
+        "url": "https://review.coreboot.org/coreboot.git"
+      }
+    },
+    "mrc-bin": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1648573484,
+        "narHash": "sha256-XmsmDeLCPvLwmcn9zv8MO4lgd0z+1dxOZvgLZw7pb+Q=",
+        "ref": "refs/heads/master",
+        "rev": "076e09c904fd55d75a3cde97243c9725a22cdb2d",
+        "revCount": 1,
+        "type": "git",
+        "url": "https://github.com/INTERUPT13/mrc-bin-mirror.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://github.com/INTERUPT13/mrc-bin-mirror.git"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1657743099,
+        "narHash": "sha256-zqcXTDEW5VNModT1v8hHRQpV9g/cjI5otfD7GukXurc=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "af38697574ea1b8545cce88d006959598d79812a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "coreboot-src": "coreboot-src",
+        "mrc-bin": "mrc-bin",
+        "nixpkgs": "nixpkgs",
+        "seabios-src": "seabios-src"
+      }
+    },
+    "seabios-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1651043765,
+        "narHash": "sha256-HqZF60warJjCSDfYaqmn/G0NfscPjSt/CZRpx76Avuk=",
+        "ref": "refs/heads/master",
+        "rev": "dc88f9b72df52b22c35b127b80c487e0b6fca4af",
+        "revCount": 2653,
+        "type": "git",
+        "url": "https://review.coreboot.org/seabios.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://review.coreboot.org/seabios.git"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
